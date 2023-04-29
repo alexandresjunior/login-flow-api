@@ -16,17 +16,17 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity(name = "tb_tipos_usuario")
 public class TipoUsuario {
 
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private long idTipoUsuario;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long idTipoUsuario;
 
-@NotNull(message = "O nome deverá ser informado")
-@NotBlank(message = "O nome não poderá ser vazio")
-@Size(min = 3, max = 45, message = "O nome deverá ter entre 3 e 45 caracteres") 
-@Pattern(regexp = "^[a-zA-Z\\s]*$", message = "Informar apenas letras para o nome")
-private String nome;
+    @NotNull(message = "O nome deverá ser informado")
+    @NotBlank(message = "O nome não poderá ser vazio")
+    @Size(min = 3, max = 45, message = "O nome deverá ter entre 3 e 45 caracteres")
+    @Pattern(regexp = "^[a-zA-Z\\s]*$", message = "Informar apenas letras para o nome")
+    private String nome;
+
 }
-

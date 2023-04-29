@@ -9,4 +9,3 @@ import com.login.flow.api.model.TipoUsuario;
 public interface TipoUsuarioRepository extends JpaRepository<TipoUsuario, Long> {
 
 }
-

@@ -10,45 +10,48 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.login.flow.api.model.Usuario;
 import com.login.flow.api.repository.UsuarioRepository;
 
 @RestController
+@RequestMapping(name = "/api/v1/usuarios")
 public class UsuarioController {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @GetMapping("/usuarios")
-    public List<Usuario> listar() {
+    @GetMapping
+    public List<Usuario> listarUsuarios() {
         return usuarioRepository.findAll();
     }
 
-    @PostMapping("/usuarios")
-    public Usuario criar(@RequestBody Usuario usuario) {
+    @PostMapping
+    public Usuario criarUsuario(@RequestBody Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 
-    @GetMapping("/usuarios/{id}")
+    @GetMapping("/{id}")
     public Optional<Usuario> obterUsuarioPeloId(@PathVariable(value = "id") Long id) {
         return usuarioRepository.findById(id);
     }
 
-    @PutMapping("/usuarios")
-    public Usuario atualizar(@RequestBody Usuario usuario) {
+    @PutMapping
+    public Usuario atualizarUsuario(@RequestBody Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
-    @DeleteMapping("/usuarios/{id}")
-    public String deletar(@PathVariable(value = "id") Long id) {
+
+    @DeleteMapping("/{id}")
+    public String deletarUsuario(@PathVariable(value = "id") Long id) {
         usuarioRepository.deleteById(id);
 
-        return "Pessoa deletada com sucesso!";
+        return "Usuário deletado com sucesso!";
     }
 
-    @GetMapping("/email/{email}") 
-    public Optional<Usuario> buscarPorEmail(@PathVariable(value = "email") String email) {
+    @GetMapping("/email/{email}")
+    public Optional<Usuario> buscarUsuarioPorEmail(@PathVariable(value = "email") String email) {
         return usuarioRepository.findByEmail(email);
-}
+    }
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 }
