@@ -39,9 +39,9 @@ public class TipoUsuarioController {
     }
     
 
-    @PutMapping("/{id}") 
-    public TipoUsuario upDate(@PathVariable long id, @RequestBody TipoUsuario TipoUsuario){
-      return tipoUsuarioRepository.upDate(id, tipoUsuarioRepository);
+    @PutMapping("/") 
+    public TipoUsuario upDate(@RequestBody TipoUsuario tipoUsuario){
+      return tipoUsuarioRepository.save(tipoUsuario);
     }
     @DeleteMapping("/{id}") 
     public void delete(@PathVariable long id){
