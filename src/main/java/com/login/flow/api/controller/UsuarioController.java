@@ -20,7 +20,10 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/api/v1/usuarios")
-public class UsuarioController {
+public class UsuarioController { 
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     @GetMapping
     public List<Usuario> listarUsuarios() {
@@ -42,18 +45,28 @@ public class UsuarioController {
         return usuarioRepository.save(usuario);
     }
 
-    @DeleteMapping(value = "/{id}")
-    public String deletarUsuario(@PathVariable(value = "id") Long id) {
+    @DeleteMapping("/usuarios/{id}")
+    public String deletar(@PathVariable(value = "id") Long id) {
         usuarioRepository.deleteById(id);
 
         return "Usuário deletado com sucesso!";
     }
 
-    @GetMapping(value = "/email/{email}")
-    public Optional<Usuario> buscarUsuarioPorEmail(@PathVariable(value = "email") String email) {
+    @GetMapping("/email/{email}")
+    public Optional<Usuario> buscarPorEmail(@PathVariable(value = "email") String email) {
         return usuarioRepository.findByEmail(email);
     }
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    @PostMapping("/senha")
+    public Object recuSenha(@RequestBody Usuario usuario) {
+        String email = usuario.getEmail();
+
+        Optional<Usuario> usuarioBD = usuarioRepository.findByEmail(email);
+
+        if (usuarioBD.isEmpty()) {
+            return "Usuario nao cadastrado";
+
+        }
+        return usuarioBD;
+    }
 }
