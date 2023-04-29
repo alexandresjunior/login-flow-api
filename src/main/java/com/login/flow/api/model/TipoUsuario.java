@@ -14,13 +14,12 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@Entity
-@Table(name = "TipoUsuario")
+@Entity(name = "TipoUsuario")
 public class TipoUsuario {
     
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idTipoUsuario;
+	private Long id;
 
 	@Column(nullable = false)
 	private String nome;
