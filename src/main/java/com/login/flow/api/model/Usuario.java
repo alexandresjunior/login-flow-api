@@ -25,7 +25,9 @@ public class Usuario {
     private String email;
     private LocalDate dataNascimento;
     private String senha;
-    @ManyToOne TipoUsuario tipoUsuario;
+    @ManyToOne 
+    //@JoinColumn (name = "IdTipopUsuario")
+    TipoUsuario tipoUsuario;
 
     public List<Usuario> findAll() {
         return null;
