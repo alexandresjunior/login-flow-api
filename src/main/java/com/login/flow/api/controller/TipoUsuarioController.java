@@ -1,5 +1,6 @@
-package controller;
+package com.login.flow.api.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,11 @@ public class TipoUsuarioController {
     public TipoUsuario criarNovoTipoUsuario(@RequestBody TipoUsuario tipousuario) {
         return tipousuarioRepository.save(tipousuario);
     }
+
+    @GetMapping(value = "tipousuarios/lista")
+    public List<TipoUsuario> listarUsuarios() {
+        return (List<TipoUsuario>) tipousuarioRepository.findAll();
+        } 
 
     //lista tipo de usuario
     @GetMapping(value = "tipousuarios/{id}")

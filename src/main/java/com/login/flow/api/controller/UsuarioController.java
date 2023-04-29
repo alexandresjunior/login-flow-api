@@ -1,8 +1,7 @@
-package controller;
+package com.login.flow.api.controller;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.login.flow.api.Repository.UsuarioRepository;
 import com.login.flow.api.model.Usuario;
 
 @RestController
-//@RequestMapping(value = "/usuarios")
 public class UsuarioController {
 
     @Autowired
@@ -26,7 +23,7 @@ public class UsuarioController {
    
 
     //cadastrar usuario OK
-    @PostMapping(value = "usuarios/cadastrar") 
+    @PostMapping(value = "/usuarios/cadastrar") 
     public Usuario criarNovoUsuario(@RequestBody Usuario usuario) {
         return usuarioRepository.save(usuario);
         }
@@ -40,7 +37,7 @@ public class UsuarioController {
     //listar por id OK
     
     @GetMapping(value = "usuarios/{id}")
-    public Optional<Usuario> obterUsuarioPeloId (@PathVariable String id) {
+    public Optional<Usuario> obterUsuarioPeloId (@PathVariable Long id) {
        return usuarioRepository.findById(id);
     }
    
@@ -49,12 +46,10 @@ public class UsuarioController {
 
     @GetMapping(value = "email/{email}")
    public Optional<Usuario> obterUsuarioPeloEmail (@PathVariable String email) {
-    return usuarioRepository.findById(email);
+    return usuarioRepository.findByEmail(email);
    }
            
     
-    
-
     //Atualizar usuario  OK
     @PutMapping(value = "usuarios/{id}")
     public ResponseEntity<Usuario> atualizarUsuario(@RequestBody Usuario usuario) {

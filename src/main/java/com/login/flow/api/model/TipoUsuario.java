@@ -1,6 +1,6 @@
 package com.login.flow.api.model;
 
-import org.hibernate.annotations.Table;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
