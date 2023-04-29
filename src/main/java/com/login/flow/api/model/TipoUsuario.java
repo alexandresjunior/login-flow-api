@@ -16,8 +16,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "TipoUsuario")
-
-
 public class TipoUsuario {
     
     @Id

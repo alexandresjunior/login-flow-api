@@ -13,14 +13,15 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-public class Usuario {
+
 @Data
 @NoArgsConstructor
 @Entity
 @Table(name = "usuario")
+public class Usuario {
 
 
-	 @Id
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id")
 	private Long id;
