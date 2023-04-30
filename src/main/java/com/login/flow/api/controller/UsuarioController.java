@@ -38,7 +38,7 @@ public class UsuarioController {
     }
     
 
-    @PutMapping("/") //@PutMapping método para atualizar;
+    @PutMapping("/{id}") //@PutMapping método para atualizar;
     public Usuario update(@RequestBody Usuario usuario){
 
       return usuarioRepository.save(usuario);
