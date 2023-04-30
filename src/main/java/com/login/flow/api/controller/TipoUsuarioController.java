@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.login.flow.api.model.TipoUsuario;
 import com.login.flow.api.repository.TipoUsuarioRepository;
 
+import jakarta.validation.Valid;
+
 @RestController
-@RequestMapping("/api/v1/tipos-usuario")
+@RequestMapping(value = "/api/v1/tipos-usuario")
 public class TipoUsuarioController {
 
     @GetMapping
@@ -26,21 +28,21 @@ public class TipoUsuarioController {
     }
 
     @PostMapping
-    public TipoUsuario criarTipoUsuario(@RequestBody TipoUsuario tipoUsuario) {
+    public TipoUsuario criarTipoUsuario(@RequestBody @Valid TipoUsuario tipoUsuario) {
         return tipoUsuarioRepository.save(tipoUsuario);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}")
     public Optional<TipoUsuario> obterTipoUsuarioPeloId(@PathVariable(value = "id") Long id) {
         return tipoUsuarioRepository.findById(id);
     }
 
     @PutMapping
-    public TipoUsuario atualizarTipoUsuario(@RequestBody TipoUsuario tipoUsuario) {
+    public TipoUsuario atualizarTipoUsuario(@RequestBody @Valid TipoUsuario tipoUsuario) {
         return tipoUsuarioRepository.save(tipoUsuario);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/{id}")
     public String deletarTipoUsuario(@PathVariable(value = "id") Long id) {
         tipoUsuarioRepository.deleteById(id);
 

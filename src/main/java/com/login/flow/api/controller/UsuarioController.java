@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.login.flow.api.model.Usuario;
 import com.login.flow.api.repository.UsuarioRepository;
 
+import jakarta.validation.Valid;
+
 @RestController
-@RequestMapping(name = "/api/v1/usuarios")
+@RequestMapping(value = "/api/v1/usuarios")
 public class UsuarioController {
 
     @GetMapping
@@ -26,28 +28,28 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public Usuario criarUsuario(@RequestBody Usuario usuario) {
+    public Usuario criarUsuario(@RequestBody @Valid Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}")
     public Optional<Usuario> obterUsuarioPeloId(@PathVariable(value = "id") Long id) {
         return usuarioRepository.findById(id);
     }
 
     @PutMapping
-    public Usuario atualizarUsuario(@RequestBody Usuario usuario) {
+    public Usuario atualizarUsuario(@RequestBody @Valid Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/{id}")
     public String deletarUsuario(@PathVariable(value = "id") Long id) {
         usuarioRepository.deleteById(id);
 
         return "Usuário deletado com sucesso!";
     }
 
-    @GetMapping("/email/{email}")
+    @GetMapping(value = "/email/{email}")
     public Optional<Usuario> buscarUsuarioPorEmail(@PathVariable(value = "email") String email) {
         return usuarioRepository.findByEmail(email);
     }
