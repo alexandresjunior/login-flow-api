@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +15,7 @@ public class RecuperarSenhaController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @PostMapping(value = "/recuperarSenha")
+    @PostMapping(value = "/{id}")
     public Object recuperarSenha (@RequestBody Usuario usuario){
         String email= usuario.getEmail();
        
