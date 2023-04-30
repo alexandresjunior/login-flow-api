@@ -28,12 +28,8 @@ public class SecurityFilter extends OncePerRequestFilter {
 
         String token = _getTokenFromRequest(request);
 
-        System.out.println("token: " + token);
-
         if (Objects.nonNull(token)) {
             String subject = tokenService.getSubject(token);
-
-            System.out.println("subject: " + subject);
 
             UserDetails usuario = usuarioRepository.findByEmail(subject);
 
