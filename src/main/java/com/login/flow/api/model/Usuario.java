@@ -1,6 +1,12 @@
 package com.login.flow.api.model;
 
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -24,7 +30,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "tb_usuarios")
-public class Usuario {
+public class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,5 +65,46 @@ public class Usuario {
     @OneToOne
     @JoinColumn(name = "idTipoUsuario")
     private TipoUsuario tipoUsuario;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (tipoUsuario.getNome().equalsIgnoreCase("administrador")) {
+            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        } else if (tipoUsuario.getNome().equalsIgnoreCase("colaborador")) {
+            return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        }
+
+        return List.of(new SimpleGrantedAuthority("ROLE_GUEST"));
+    }
+
+    @Override
+    public String getPassword() {
+        return senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return Boolean.TRUE;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return Boolean.TRUE;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return Boolean.TRUE;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return Boolean.TRUE;
+    }
 
 }

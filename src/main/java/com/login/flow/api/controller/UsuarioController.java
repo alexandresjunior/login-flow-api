@@ -49,10 +49,10 @@ public class UsuarioController {
         return "Usuário deletado com sucesso!";
     }
 
-    @GetMapping(value = "/email/{email}")
-    public Optional<Usuario> buscarUsuarioPorEmail(@PathVariable(value = "email") String email) {
-        return usuarioRepository.findByEmail(email);
-    }
+    // @GetMapping(value = "/email/{email}")
+    // public Optional<Usuario> buscarUsuarioPorEmail(@PathVariable(value = "email") String email) {
+    //     return usuarioRepository.findByEmail(email);
+    // }
 
     @Autowired
     private UsuarioRepository usuarioRepository;
