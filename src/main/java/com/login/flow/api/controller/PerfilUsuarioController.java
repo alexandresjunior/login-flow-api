@@ -13,43 +13,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.login.flow.api.model.TipoUsuario;
-import com.login.flow.api.repository.TipoUsuarioRepository;
+import com.login.flow.api.model.PerfilUsuario;
+import com.login.flow.api.repository.PerfilUsuarioRepository;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/api/v1/tipos-usuario")
-public class TipoUsuarioController {
+@RequestMapping(value = "/api/v1/perfis-usuario")
+public class PerfilUsuarioController {
 
     @GetMapping
-    public List<TipoUsuario> listarTiposUsuario() {
-        return tipoUsuarioRepository.findAll();
+    public List<PerfilUsuario> listarTiposUsuario() {
+        return perfilUsuarioRepository.findAll();
     }
 
     @PostMapping
-    public TipoUsuario criarTipoUsuario(@RequestBody @Valid TipoUsuario tipoUsuario) {
-        return tipoUsuarioRepository.save(tipoUsuario);
+    public PerfilUsuario criarTipoUsuario(@RequestBody @Valid PerfilUsuario tipoUsuario) {
+        return perfilUsuarioRepository.save(tipoUsuario);
     }
 
     @GetMapping(value = "/{id}")
-    public Optional<TipoUsuario> obterTipoUsuarioPeloId(@PathVariable(value = "id") Long id) {
-        return tipoUsuarioRepository.findById(id);
+    public Optional<PerfilUsuario> obterTipoUsuarioPeloId(@PathVariable(value = "id") Long id) {
+        return perfilUsuarioRepository.findById(id);
     }
 
     @PutMapping
-    public TipoUsuario atualizarTipoUsuario(@RequestBody @Valid TipoUsuario tipoUsuario) {
-        return tipoUsuarioRepository.save(tipoUsuario);
+    public PerfilUsuario atualizarTipoUsuario(@RequestBody @Valid PerfilUsuario tipoUsuario) {
+        return perfilUsuarioRepository.save(tipoUsuario);
     }
 
     @DeleteMapping(value = "/{id}")
     public String deletarTipoUsuario(@PathVariable(value = "id") Long id) {
-        tipoUsuarioRepository.deleteById(id);
+        perfilUsuarioRepository.deleteById(id);
 
-        return "Tipo de usuário deletado com sucesso!";
+        return "Perfil de usuário deletado com sucesso!";
     }
 
     @Autowired
-    private TipoUsuarioRepository tipoUsuarioRepository;
+    private PerfilUsuarioRepository perfilUsuarioRepository;
 
 }

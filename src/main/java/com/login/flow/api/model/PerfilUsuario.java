@@ -15,12 +15,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "tb_tipos_usuario")
-public class TipoUsuario {
+@Entity(name = "tb_perfis_usuario")
+public class PerfilUsuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idTipoUsuario;
+    private long idPerfilUsuario;
 
     @NotNull(message = "O nome deverá ser informado")
     @NotBlank(message = "O nome não poderá ser vazio")

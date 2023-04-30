@@ -38,13 +38,13 @@ public class Usuario implements UserDetails {
 
     @NotNull(message = "O nome deverá ser informado")
     @NotBlank(message = "O nome não poderá ser vazio")
-    @Size(min = 3, max = 45, message = "O nome deverá ter entre 3 e 45 caracteres")
+    @Size(min = 3, max = 100, message = "O nome deverá ter entre 3 e 100 caracteres")
     @Pattern(regexp = "^[a-zA-Z\\s]*$", message = "Informar apenas letras para o nome")
     private String nome;
 
     @NotNull(message = "O sobrenome deverá ser informado")
     @NotBlank(message = "O sobrenome não poderá ser vazio")
-    @Size(min = 2, max = 45, message = "O sobrenome deverá ter entre 5 e 45 caracteres")
+    @Size(min = 3, max = 100, message = "O sobrenome deverá ter entre 3 e 100 caracteres")
     @Pattern(regexp = "^[a-zA-Z\\s]*$", message = "Informar apenas letras para o sobrenome")
     private String sobrenome;
 
@@ -59,18 +59,17 @@ public class Usuario implements UserDetails {
     // TODO: Incluir regex
     @NotNull(message = "O campo senha deverá ser informado")
     @NotBlank(message = "O campo senha não poderá ser vazio")
-    @Size(min = 6, max = 6, message = "O campo senha deverá ter 6 caracteres")
     private String senha;
 
     @OneToOne
-    @JoinColumn(name = "idTipoUsuario")
-    private TipoUsuario tipoUsuario;
+    @JoinColumn(name = "idPerfilUsuario")
+    private PerfilUsuario perfilUsuario;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (tipoUsuario.getNome().equalsIgnoreCase("administrador")) {
+        if (perfilUsuario.getNome().equalsIgnoreCase("administrador")) {
             return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        } else if (tipoUsuario.getNome().equalsIgnoreCase("colaborador")) {
+        } else if (perfilUsuario.getNome().equalsIgnoreCase("colaborador")) {
             return List.of(new SimpleGrantedAuthority("ROLE_USER"));
         }
 
