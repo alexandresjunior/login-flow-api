@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
@@ -16,7 +17,7 @@ public class TokenService {
 
     public String generateToken(Usuario usuario) {
         try {
-            Algorithm algorithm = Algorithm.HMAC256("secret-key");
+            Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
 
             return JWT.create()
                     .withIssuer("login-flow-api")
@@ -34,5 +35,9 @@ public class TokenService {
         // O token expira em 2min de acordo com o fuso horário do Brasil
         return LocalDateTime.now().plusMinutes(2).toInstant(ZoneOffset.of("-03:00"));
     }
+
+    // Propriedade definida no application.properties
+    @Value("${api.security.token.secret.key}")
+    private String SECRET_KEY;
 
 }
