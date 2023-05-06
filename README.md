@@ -48,7 +48,7 @@ $ src
 [Acesse aqui](https://google.com)
 
 ### Autores do projeto
-LailaMiranda 
-Mnascmento 
-Larafmp
+- [Laila Miranda] (https://github.com/LailaMiranda)
+- [Maria Nascimento] (https://github.com/Mnascmento)
+- [Lara Ferreira] (https://github.com/Larafmp)
 
